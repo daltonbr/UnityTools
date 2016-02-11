@@ -24,3 +24,20 @@ ExportedObj/
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+/ProjectSettings/AudioManager.asset
+/ProjectSettings/ClusterInputManager.asset
+/ProjectSettings/DynamicsManager.asset
+/ProjectSettings/EditorBuildSettings.asset
+/ProjectSettings/EditorSettings.asset
+/ProjectSettings/GraphicsSettings.asset
+/ProjectSettings/InputManager.asset
+/ProjectSettings/NavMeshAreas.asset
+/ProjectSettings/NetworkManager.asset
+/ProjectSettings/Physics2DSettings.asset
+/ProjectSettings/ProjectSettings.asset
+/ProjectSettings/ProjectVersion.txt
+/ProjectSettings/QualitySettings.asset
+/ProjectSettings/TagManager.asset
+/ProjectSettings/TimeManager.asset
+/ProjectSettings/UnityAdsSettings.asset
+/ProjectSettings/UnityConnectSettings.asset
