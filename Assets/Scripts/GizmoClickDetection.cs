@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 
 /// <summary>
-///     Simple script to detect if a the attached gameObject is being dragged by the user.
+///     Simple script to detect if the attached gameObject is being clicked upon by the user, applied
+///     to an individual gizmo handle/element.
 /// </summary>
 /// 
 /// <author>
@@ -12,7 +13,7 @@ using System.Collections.Generic;
 /// </author>
 /// 
 /// <version>
-///     1.0.0 - 22nd January 2016
+///     1.0.0 - 01st January 2016
 /// </version>
 public class GizmoClickDetection : MonoBehaviour {
 
@@ -100,7 +101,9 @@ public class GizmoClickDetection : MonoBehaviour {
                             previousMaterials[renderer] = renderer.sharedMaterial;
                             renderer.material = highlight;
                         }
-                    } catch (NullReferenceException exception) { }
+                    } catch (NullReferenceException exception) {
+                        // Perhaps no previous materials could be found?
+                    }
 
                 }
 

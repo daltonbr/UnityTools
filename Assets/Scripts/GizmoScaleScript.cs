@@ -2,7 +2,8 @@
 using System.Collections;
 
 /// <summary>
-///     Simple script to detect if a the attached gameObject is being scaled by the user.
+///     Simple script to handle the functionality of the Scale Gizmo (i.e. scale the gizmo
+///     and the target object along the axis the user is dragging towards)
 /// </summary>
 /// 
 /// <author>
@@ -10,7 +11,7 @@ using System.Collections;
 /// </author>
 /// 
 /// <version>
-///     1.0.0 - 22nd January 2016
+///     1.0.0 - 01st January 2016
 /// </version>
 public class GizmoScaleScript : MonoBehaviour {
 
@@ -89,9 +90,10 @@ public class GizmoScaleScript : MonoBehaviour {
     ///     Once per frame
     /// </summary>
     public void Update() {
+
+        // Store the previous local scale of the gizmo
         if(Input.GetMouseButtonDown(0) && detectors[3].pressing) {
             previousGizmoScale = gameObject.transform.localScale;
-
         } else if(Input.GetMouseButtonUp(0) && previousGizmoScale != null) {
             gameObject.transform.localScale = ((Vector3) previousGizmoScale);
         }
@@ -100,10 +102,11 @@ public class GizmoScaleScript : MonoBehaviour {
             if (Input.GetMouseButton(0) && detectors[i].pressing) {
 
                 switch (i) {
+
                     // X Axis
                     case 0:
                         {
-                            // Scale along the current axis
+                            // Scale along the X axis
                             float delta = Input.GetAxis("Mouse X") * (Time.deltaTime);
                             delta *= scaleSpeed;
 
@@ -132,7 +135,7 @@ public class GizmoScaleScript : MonoBehaviour {
                     // Y Axis
                     case 1:
                         {
-                            // Scale along the current axis
+                            // Scale along the Y axis
                             float delta = Input.GetAxis("Mouse Y") * (Time.deltaTime);
                             delta *= scaleSpeed;
 
@@ -161,7 +164,7 @@ public class GizmoScaleScript : MonoBehaviour {
                     // Z Axis
                     case 2:
                         {
-                            // Scale along the current axis
+                            // Scale along the Z axis
                             float delta = Input.GetAxis("Mouse X") * (Time.deltaTime);
                             delta *= scaleSpeed;
 
@@ -201,8 +204,6 @@ public class GizmoScaleScript : MonoBehaviour {
                             gameObject.transform.localScale += new Vector3(delta, delta, delta);
                         }
                         break;
-
-
                 }
 
                 break;
