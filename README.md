@@ -1,4 +1,5 @@
 <img src="Images/logo.png" align="right" width="128px" height="128px"/>
+<br>
 # Unity Runtime Gizmos
 > 3D Manipulation Gizmos for final-build Unity projects.
 
@@ -18,7 +19,6 @@ Version 1.0 contains the following:
  - Associated materials, meshes, and example scenes for the above
  
 <br>
-
 ## Usage
 This asset package contains a series of four 3D manipulation gizmos allowing developers to provide translation, scaling, rotation, and view snapping to 
 their end users in a final-build Unity project. To ensure that these gizmos can be interacted with and render correctly, a few instructions must be 
@@ -48,10 +48,9 @@ repository at github.com/CaptainHillman/UnityGizmos/issues.
 See the UsageInstructions.pdf file for more information on how to utilise the gizmos in your Unity project.
 
 <br>
-
 ## Current Release 
 See the 'master' branch for public releases within the 'Releases' folder.
-<br>>
+<br>
 
 ## Branch Information
 Current Git Branches: master, develop  
