@@ -1,5 +1,5 @@
-<img src="Images/logo.png" align="right" />
-# Runtime Unity Gizmos
+<img src="Images/logo.png" align="right" width="128px" height="128px"/>
+# Unity Runtime Gizmos
 > 3D Manipulation Gizmos for final-build Unity projects.
 
 Having recently had need to potter around in Unity for some work on data visualisation tools, I was disappointed to learn that not only
