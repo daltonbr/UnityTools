@@ -17,14 +17,14 @@ Version 1.0 contains the following:
  - View Gizmo
  - Associated materials, meshes, and example scenes for the above
  
-<br><br>
+<br>
 
 ## Usage
 This asset package contains a series of four 3D manipulation gizmos allowing developers to provide translation, scaling, rotation, and view snapping to 
 their end users in a final-build Unity project. To ensure that these gizmos can be interacted with and render correctly, a few instructions must be 
 followed; these are listed below.
 
-   -  A new layer should be created speci?cally for the use of these gizmos; in conjunction with a secondary 
+   -  A new layer should be created specifically for the use of these gizmos; in conjunction with a secondary 
   orthographic camera, this “Gizmo Layer” can be used to render the gizmos on top of any target game objects
   regardless of their position in 3D space.
   
@@ -36,22 +36,22 @@ followed; these are listed below.
   -  If required, the View Gizmo can be added to a UI canvas (also set to the Gizmo Layer) to ensure it remains
   in a set position and can be seen by the user at all times.
   
-Different materials can be used to alter the appearance of any gizmo by applying the material to each gizmo handle, or its correspinding script if a new 
+Different materials can be used to alter the appearance of any gizmo by applying the material to each gizmo handle, or its corresponding script if a new 
 highlight material is desired.
 
 Additionally, the functionality of each gizmo in contained in separate C# scripts within the Assets/Scripts folder. If changes in the behaviour of any gizmo 
 are required, each script is fully commented and can be edited at will.
 
-Any issues encountered, questions, or suggestions should be posted on the Asset Store page of this package, or on the GitHub issues page on the 
+Any issues encountered, questions, or suggestions should be posted on the Unity Asset Store page of this package, or on the GitHub issues page on the 
 repository at github.com/CaptainHillman/UnityGizmos/issues.
 
 See the UsageInstructions.pdf file for more information on how to utilise the gizmos in your Unity project.
 
-<br><br>
+<br>
 
 ## Current Release 
-See 'master' branch for public releases within the 'Releases' folder.
-<br><br>
+See the 'master' branch for public releases within the 'Releases' folder.
+<br>>
 
 ## Branch Information
 Current Git Branches: master, develop  
@@ -63,4 +63,4 @@ _Following [Vincent Driessen's model](http://nvie.com/posts/a-successful-git-bra
 [![MIT](http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png)](http://opensource.org/licenses/MIT/)
 
 Copyright (c) 2016 - Michael Hillman under the MIT Licence  
-_See [licence file](LICENCE) for more information_
+_See [licence file](LICENSE) for more information_
