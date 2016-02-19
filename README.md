@@ -15,7 +15,7 @@ Each of the assets packages/tools are listed in their own folder (see details be
 ## Current Features
 At the time of writing, this repository currently contains the following series of asset package and tools...
 
- - [**Runtime Gizmos:**](../RuntimeGizmos) A series of very simple 3D manipulation gizmos to emulate those found in the Unity Editor's scene view but accessible at runtime without
+ - [**Runtime Gizmos:**](RuntimeGizmos) A series of very simple 3D manipulation gizmos to emulate those found in the Unity Editor's scene view but accessible at runtime without
 the use of the editor APIs. More information here.
 
 Any issues encountered, questions, or suggestions should be posted on the Unity Asset Store page of the relevant package, or on the GitHub issues page on the 
