@@ -4,7 +4,7 @@
 > Custom made asset packages and tools for use with Unity
 
 This repository contains a series of Unity asset packages and tools I've put together primarily for use across multiple personal projects, but also
-for the free, open source, use of any one that wants to use their features with full access on how I've put them together. At lot of these assets/tools
+for the free, open source use of any one that wants to use their features with full access on how I've put them together. At lot of these assets/tools
 are works in progress, but the ones committed to the master branch can be considered released. I've bundled them all together to cut down on how many
 repositories I'd need to separate them, but if the time comes where some of these tools become particularly complex/large, or are in active development,
 whilst others are fixed then I'll endeavour to split them up.
@@ -29,7 +29,7 @@ See the 'master' branch for public releases versions of each asset/tool.
 <br>
 
 ## Branch Information
-Current Git Branches: master, develop, dev-color-picker
+Current Git Branches: master, develop, dev-color-picker<br>
 _Following [Vincent Driessen's model](http://nvie.com/posts/a-successful-git-branching-model/)_
 <br><br>
 
