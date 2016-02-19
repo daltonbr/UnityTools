@@ -50,8 +50,8 @@ See the UsageInstructions.pdf file for more information on how to utilise the gi
 <br>
 ## Current Release 
 See the 'master' branch for public releases within the 'Releases' folder.
-<br>
 
+<br>
 ## Branch Information
 Current Git Branches: master, develop  
 _Following [Vincent Driessen's model](http://nvie.com/posts/a-successful-git-branching-model/)_

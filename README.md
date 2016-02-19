@@ -26,8 +26,8 @@ See the UsageInstructions.pdf file inside each folder for more information on ho
 <br>
 ## Current Release 
 See the 'master' branch for public releases versions of each asset/tool.
-<br>
 
+<br>
 ## Branch Information
 Current Git Branches: master, develop, dev-color-picker<br>
 _Following [Vincent Driessen's model](http://nvie.com/posts/a-successful-git-branching-model/)_
