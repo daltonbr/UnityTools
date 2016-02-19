@@ -1,59 +1,35 @@
-<img src="Images/logo.png" align="right" width="128px" height="128px"/>
+<img src="logo.png" align="right" width="128px" height="128px"/>
 <br>
-# Unity Runtime Gizmos
-> 3D Manipulation Gizmos for final-build Unity projects.
+# Custom Unity Assets & Tools
+> Custom made asset packages and tools for use with Unity
 
-Having recently had need to potter around in Unity for some work on data visualisation tools, I was disappointed to learn that not only
-does Unity split their API into engine and editor sub-packages (where some of the useful editor functionality is not compilable for
-runtime builds due to complexities with native code), but it also doesn't allow developers to incorporate the 3D gizmos that Unity's
-scene view provides to facilitate translation, scaling, rotating, and snap movement of the camera.
+This repository contains a series of Unity asset packages and tools I've put together primarily for use across multiple personal projects, but also
+for the free, open source, use of any one that wants to use their features with full access on how I've put them together. At lot of these assets/tools
+are works in progress, but the ones committed to the master branch can be considered released. I've bundled them all together to cut down on how many
+repositories I'd need to separate them, but if the time comes where some of these tools become particularly complex/large, or are in active development,
+whilst others are fixed then I'll endeavour to split them up.
 
-A series of very simple 3D manipulation gizmos to emulate those found in the Unity Editor's scene view but accessible at runtime without
-the use of the editor APIs.
-
-Version 1.0 contains the following:
- - Translation Gizmo
- - Scaling Gizmo
- - Rotation Gizmo
- - View Gizmo
- - Associated materials, meshes, and example scenes for the above
+Each of the assets packages/tools are listed in their own folder (see details below) with their own Unity projects, documentation, and usage instructions.
  
 <br>
-## Usage
-This asset package contains a series of four 3D manipulation gizmos allowing developers to provide translation, scaling, rotation, and view snapping to 
-their end users in a final-build Unity project. To ensure that these gizmos can be interacted with and render correctly, a few instructions must be 
-followed; these are listed below.
+## Current Features
+At the time of writing, this repository currently contains the following series of asset package and tools...
 
-   -  A new layer should be created specifically for the use of these gizmos; in conjunction with a secondary 
-  orthographic camera, this “Gizmo Layer” can be used to render the gizmos on top of any target game objects
-  regardless of their position in 3D space.
-  
-  -  Once a prefab gizmo has been added to the scene (and set to the Gizmo Layer), its pre-attached script (or 
-  the scripts attached to each of the handles within the prefab object) may contain variables that need to be
-  populated. These are commonly the camera that it set to render the aforementioned Gizmo Layer and the 
-  target game object to be rotated, scaled, translated etc.
-  
-  -  If required, the View Gizmo can be added to a UI canvas (also set to the Gizmo Layer) to ensure it remains
-  in a set position and can be seen by the user at all times.
-  
-Different materials can be used to alter the appearance of any gizmo by applying the material to each gizmo handle, or its corresponding script if a new 
-highlight material is desired.
+ - [**Runtime Gizmos:**](../RuntimeGizmos) A series of very simple 3D manipulation gizmos to emulate those found in the Unity Editor's scene view but accessible at runtime without
+the use of the editor APIs. More information here.
 
-Additionally, the functionality of each gizmo in contained in separate C# scripts within the Assets/Scripts folder. If changes in the behaviour of any gizmo 
-are required, each script is fully commented and can be edited at will.
+Any issues encountered, questions, or suggestions should be posted on the Unity Asset Store page of the relevant package, or on the GitHub issues page on the 
+repository at github.com/CaptainHillman/UnityTools/issues.
 
-Any issues encountered, questions, or suggestions should be posted on the Unity Asset Store page of this package, or on the GitHub issues page on the 
-repository at github.com/CaptainHillman/UnityGizmos/issues.
-
-See the UsageInstructions.pdf file for more information on how to utilise the gizmos in your Unity project.
+See the UsageInstructions.pdf file inside each folder for more information on how to utilise each of the assets/tools listed above.
 
 <br>
 ## Current Release 
-See the 'master' branch for public releases within the 'Releases' folder.
+See the 'master' branch for public releases versions of each asset/tool.
 <br>
 
 ## Branch Information
-Current Git Branches: master, develop  
+Current Git Branches: master, develop, dev-color-picker
 _Following [Vincent Driessen's model](http://nvie.com/posts/a-successful-git-branching-model/)_
 <br><br>
 
