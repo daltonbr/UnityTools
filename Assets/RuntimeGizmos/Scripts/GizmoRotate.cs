@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace RuntimeGizmos
 {
@@ -55,8 +55,8 @@ namespace RuntimeGizmos
 
                         // Y Axis
                         case 1:
-                            rotateTarget.transform.Rotate(Vector3.up, delta);
-                            gameObject.transform.Rotate(Vector3.up, delta);
+                            rotateTarget.transform.Rotate(Vector3.down, delta);
+                            gameObject.transform.Rotate(Vector3.down, delta);
                             break;
 
                         // Z Axis
