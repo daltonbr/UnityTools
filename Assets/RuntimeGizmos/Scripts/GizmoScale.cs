@@ -27,27 +27,27 @@ namespace RuntimeGizmos
         public GameObject scaleTarget;
 
         /// Array of detector scripts stored as [x, y, z, center]
-        private GizmoClickDetection[] detectors;
+        private GizmoClickDetection[] _detectors;
 
         /// Initial local scales of the scaleTarget
-        private float initialScaleX, initialScaleY, initialScaleZ;
+        private float _initialScaleX, _initialScaleY, _initialScaleZ;
 
         /// Previous local scale of gizmo before uniform scale
-        private Vector3? previousGizmoScale;
+        private Vector3? _previousGizmoScale;
     
         public void Awake()
         {
             // Get the initial scales
-            initialScaleX = gameObject.transform.localScale.x;
-            initialScaleY = gameObject.transform.localScale.y;
-            initialScaleZ = gameObject.transform.localScale.z;
+            _initialScaleX = gameObject.transform.localScale.x;
+            _initialScaleY = gameObject.transform.localScale.y;
+            _initialScaleZ = gameObject.transform.localScale.z;
 
             // Get the click detection scripts
-            detectors = new GizmoClickDetection[4];
-            detectors[0] = xHandle.GetComponent<GizmoClickDetection>();
-            detectors[1] = yHandle.GetComponent<GizmoClickDetection>();
-            detectors[2] = zHandle.GetComponent<GizmoClickDetection>();
-            detectors[3] = centerHandle.GetComponent<GizmoClickDetection>();
+            _detectors = new GizmoClickDetection[4];
+            _detectors[0] = xHandle.GetComponent<GizmoClickDetection>();
+            _detectors[1] = yHandle.GetComponent<GizmoClickDetection>();
+            _detectors[2] = zHandle.GetComponent<GizmoClickDetection>();
+            _detectors[3] = centerHandle.GetComponent<GizmoClickDetection>();
 
             // Set the same position for the target and the gizmo
             transform.position = scaleTarget.transform.position;
@@ -56,18 +56,18 @@ namespace RuntimeGizmos
         public void Update()
         {
             // Store the previous local scale of the gizmo
-            if(Input.GetMouseButtonDown(0) && detectors[3].pressing)
+            if(Input.GetMouseButtonDown(0) && _detectors[3].pressing)
             {
-                previousGizmoScale = gameObject.transform.localScale;
+                _previousGizmoScale = gameObject.transform.localScale;
             }
-            else if (Input.GetMouseButtonUp(0) && previousGizmoScale != null)
+            else if (Input.GetMouseButtonUp(0) && _previousGizmoScale != null)
             {
-                gameObject.transform.localScale = ((Vector3) previousGizmoScale);
+                gameObject.transform.localScale = ((Vector3) _previousGizmoScale);
             }
 
             for (int i = 0; i < 4; i++)
             {
-                if (Input.GetMouseButton(0) && detectors[i].pressing)
+                if (Input.GetMouseButton(0) && _detectors[i].pressing)
                 {
                     switch (i)
                     {
@@ -96,7 +96,7 @@ namespace RuntimeGizmos
                                 xCylinder.transform.position.z
                             );
 
-                            previousGizmoScale = null;
+                            _previousGizmoScale = null;
                         }
                             break;
 
@@ -125,7 +125,7 @@ namespace RuntimeGizmos
                                 yCylinder.transform.position.z
                             );
 
-                            previousGizmoScale = null;
+                            _previousGizmoScale = null;
                         }
                             break;
 
@@ -154,7 +154,7 @@ namespace RuntimeGizmos
                                 lengthAfter / 2.0f
                             );
 
-                            previousGizmoScale = null;
+                            _previousGizmoScale = null;
                         }
                             break;
 
@@ -164,9 +164,9 @@ namespace RuntimeGizmos
                             float delta = (Input.GetAxis("Mouse X") + Input.GetAxis("Mouse Y")) * (Time.deltaTime);
                             delta *= scaleSpeed;
 
-                            if ((gameObject.transform.localScale.x + delta) <= (initialScaleX / 25.0f)) return;
-                            if ((gameObject.transform.localScale.y + delta) <= (initialScaleY / 25.0f)) return;
-                            if ((gameObject.transform.localScale.z + delta) <= (initialScaleZ / 25.0f)) return;
+                            if ((gameObject.transform.localScale.x + delta) <= (_initialScaleX / 25.0f)) return;
+                            if ((gameObject.transform.localScale.y + delta) <= (_initialScaleY / 25.0f)) return;
+                            if ((gameObject.transform.localScale.z + delta) <= (_initialScaleZ / 25.0f)) return;
 
                             scaleTarget.transform.localScale += new Vector3(delta, delta, delta);
                             gameObject.transform.localScale += new Vector3(delta, delta, delta);

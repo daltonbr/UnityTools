@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RuntimeGizmos
 {
@@ -21,15 +21,15 @@ namespace RuntimeGizmos
         public GameObject rotateTarget;
 
         /// Array of detector scripts stored as [x, y, z]
-        private GizmoClickDetection[] detectors;
+        private GizmoClickDetection[] _detectors;
 
         public void Awake()
         {
             // Get the click detection scripts
-            detectors = new GizmoClickDetection[3];
-            detectors[0] = xTorus.GetComponent<GizmoClickDetection>();
-            detectors[1] = yTorus.GetComponent<GizmoClickDetection>();
-            detectors[2] = zTorus.GetComponent<GizmoClickDetection>();
+            _detectors = new GizmoClickDetection[3];
+            _detectors[0] = xTorus.GetComponent<GizmoClickDetection>();
+            _detectors[1] = yTorus.GetComponent<GizmoClickDetection>();
+            _detectors[2] = zTorus.GetComponent<GizmoClickDetection>();
 
             // Set the same position for the target and the gizmo
             transform.position = rotateTarget.transform.position;
@@ -39,7 +39,7 @@ namespace RuntimeGizmos
         {
             for (int i = 0; i < 3; i++)
             {
-                if (Input.GetMouseButton(0) && detectors[i].pressing)
+                if (Input.GetMouseButton(0) && _detectors[i].pressing)
                 {
                     // Rotation angle
                     float delta = (Input.GetAxis("Mouse X") - Input.GetAxis("Mouse Y")) * (Time.deltaTime);

@@ -18,15 +18,15 @@ namespace RuntimeGizmos
         public GameObject translateTarget;
 
         /// Array of detector scripts stored as [x, y, z]
-        private GizmoClickDetection[] detectors;
+        private GizmoClickDetection[] _detectors;
 
         public void Awake()
         {
             // Get the click detection scripts
-            detectors = new GizmoClickDetection[3];
-            detectors[0] = xAxisObject.GetComponent<GizmoClickDetection>();
-            detectors[1] = yAxisObject.GetComponent<GizmoClickDetection>();
-            detectors[2] = zAxisObject.GetComponent<GizmoClickDetection>();
+            _detectors = new GizmoClickDetection[3];
+            _detectors[0] = xAxisObject.GetComponent<GizmoClickDetection>();
+            _detectors[1] = yAxisObject.GetComponent<GizmoClickDetection>();
+            _detectors[2] = zAxisObject.GetComponent<GizmoClickDetection>();
 
             // Set the same position for the target and the gizmo
             transform.position = translateTarget.transform.position;
@@ -36,7 +36,7 @@ namespace RuntimeGizmos
         {
             for (int i = 0; i < 3; i++)
             {
-                if (Input.GetMouseButton(0) && detectors[i].pressing)
+                if (Input.GetMouseButton(0) && _detectors[i].pressing)
                 {
                     // Get the distance from the camera to the target (used as a scaling factor in translate)
                     float distance = Vector3.Distance(Camera.main.transform.position, translateTarget.transform.position);
@@ -52,7 +52,7 @@ namespace RuntimeGizmos
                         {
                             // If the user is pressing the plane, move along Y and Z, else move along X
 
-                            if (detectors[i].pressingPlane)
+                            if (_detectors[i].pressingPlane)
                             {
                                 float deltaY = Input.GetAxis("Mouse Y") * (Time.deltaTime * distance);
                                 offset = Vector3.up * deltaY;
@@ -78,8 +78,7 @@ namespace RuntimeGizmos
                         case 1:
                         {
                             // If the user is pressing the plane, move along X and Z, else just move along X
-
-                            if (detectors[i].pressingPlane)
+                            if (_detectors[i].pressingPlane)
                             {
                                 float deltaX = Input.GetAxis("Mouse X") * (Time.deltaTime * distance);
                                 offset = Vector3.left * deltaX;
@@ -105,8 +104,7 @@ namespace RuntimeGizmos
                         case 2:
                         {
                             // If the user is pressing the plane, move along X and Y, else just move along Z
-
-                            if (detectors[i].pressingPlane)
+                            if (_detectors[i].pressingPlane)
                             {
                                 float deltaX = Input.GetAxis("Mouse X") * (Time.deltaTime * distance);
                                 offset = Vector3.left * deltaX;

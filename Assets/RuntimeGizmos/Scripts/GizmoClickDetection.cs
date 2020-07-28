@@ -33,7 +33,7 @@ namespace RuntimeGizmos
         /// Is the user pressing the plane area?
         [HideInInspector]
         public bool pressingPlane = false;
-    
+        
         public void Awake()
         {
             previousMaterials = new Dictionary<MeshRenderer, Material>();

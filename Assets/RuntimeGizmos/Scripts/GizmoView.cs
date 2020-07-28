@@ -29,24 +29,24 @@ namespace RuntimeGizmos
         public Text topLabel, sideLabel;
 
         // Array of detector scripts stored as [x1, x2, y1, y2, z1, z2, center]
-        private GizmoClickDetection[] detectors;
+        private GizmoClickDetection[] _detectors;
 
         /// Time of last click (since startup, in seconds)
-        private float lastClick;
+        private float _lastClick;
 
         public void Awake()
         {
-            lastClick = Time.realtimeSinceStartup;
+            _lastClick = Time.realtimeSinceStartup;
 
             // Get the click detection scripts
-            detectors = new GizmoClickDetection[7];
-            detectors[0] =  xHandle1.GetComponent<GizmoClickDetection>();
-            detectors[1] =  xHandle2.GetComponent<GizmoClickDetection>();
-            detectors[2] =  yHandle1.GetComponent<GizmoClickDetection>();
-            detectors[3] =  yHandle2.GetComponent<GizmoClickDetection>();
-            detectors[4] =  zHandle1.GetComponent<GizmoClickDetection>();
-            detectors[5] =  zHandle2.GetComponent<GizmoClickDetection>();
-            detectors[6] = centerCube.GetComponent<GizmoClickDetection>();
+            _detectors = new GizmoClickDetection[7];
+            _detectors[0] =  xHandle1.GetComponent<GizmoClickDetection>();
+            _detectors[1] =  xHandle2.GetComponent<GizmoClickDetection>();
+            _detectors[2] =  yHandle1.GetComponent<GizmoClickDetection>();
+            _detectors[3] =  yHandle2.GetComponent<GizmoClickDetection>();
+            _detectors[4] =  zHandle1.GetComponent<GizmoClickDetection>();
+            _detectors[5] =  zHandle2.GetComponent<GizmoClickDetection>();
+            _detectors[6] = centerCube.GetComponent<GizmoClickDetection>();
 
             // Hide the handles currently facing front & back
             zHandle1.GetComponent<Renderer>().enabled = false;
@@ -57,12 +57,12 @@ namespace RuntimeGizmos
         {
             // If the user isn't clicking the center cube (for free rotate), and they've clicked recently
             // (within half a second), bug out.
-            if (!detectors[6].pressing && (Time.realtimeSinceStartup - lastClick) < 0.5f) return;
+            if (!_detectors[6].pressing && (Time.realtimeSinceStartup - _lastClick) < 0.5f) return;
 
             // Find the handle that the user has clicked then move the camera the corresponding positions
-            for (int i = 0; i < detectors.Length; i++)
+            for (int i = 0; i < _detectors.Length; i++)
             {
-                if (Input.GetMouseButton(0) && detectors[i].pressing)
+                if (Input.GetMouseButton(0) && _detectors[i].pressing)
                 {
                     // Get the distance from the cameraContainer to the pivot (targetObject) so that we can
                     // maintain it after moving to another side of the pivot.
@@ -235,7 +235,7 @@ namespace RuntimeGizmos
 
                     // Rotate the camera to look at the target, store the time of the click
                     cameraContainer.transform.LookAt(targetObject.transform);
-                    lastClick = Time.realtimeSinceStartup;
+                    _lastClick = Time.realtimeSinceStartup;
 
                     break;
                 }
