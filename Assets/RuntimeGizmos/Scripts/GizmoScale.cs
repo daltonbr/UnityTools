@@ -1,76 +1,78 @@
 ﻿using UnityEngine;
 
-/// Handle Scale Gizmo at Runtime
-public class GizmoScale : MonoBehaviour
+namespace RuntimeGizmos
 {
-    /// Scale speed scalar
-    public float scaleSpeed = 7.5f;
+    /// Handle Scale Gizmo at Runtime
+    public class GizmoScale : MonoBehaviour
+    {
+        /// Scale speed scalar
+        public float scaleSpeed = 7.5f;
 
-    /// X handle of gizmo
-    public GameObject xHandle;
+        /// X handle of gizmo
+        public GameObject xHandle;
 
-    /// Y handle of gizmo
-    public GameObject yHandle;
+        /// Y handle of gizmo
+        public GameObject yHandle;
 
-    /// Z handle of gizmo
-    public GameObject zHandle;
+        /// Z handle of gizmo
+        public GameObject zHandle;
 
-    /// Components of each scaling handle
-    public GameObject xCube, xCylinder, yCube, yCylinder, zCube, zCylinder;
+        /// Components of each scaling handle
+        public GameObject xCube, xCylinder, yCube, yCylinder, zCube, zCylinder;
 
-    /// Center handle of gizmo
-    public GameObject centerHandle;
+        /// Center handle of gizmo
+        public GameObject centerHandle;
 
-    /// Target for scaling
-    public GameObject scaleTarget;
+        /// Target for scaling
+        public GameObject scaleTarget;
 
-    /// Array of detector scripts stored as [x, y, z, center]
-    private GizmoClickDetection[] detectors;
+        /// Array of detector scripts stored as [x, y, z, center]
+        private GizmoClickDetection[] detectors;
 
-    /// Initial local scales of the scaleTarget
-    private float initialScaleX, initialScaleY, initialScaleZ;
+        /// Initial local scales of the scaleTarget
+        private float initialScaleX, initialScaleY, initialScaleZ;
 
-    /// Previous local scale of gizmo before uniform scale
-    private Vector3? previousGizmoScale;
+        /// Previous local scale of gizmo before uniform scale
+        private Vector3? previousGizmoScale;
     
-    public void Awake()
-    {
-        // Get the initial scales
-        initialScaleX = gameObject.transform.localScale.x;
-        initialScaleY = gameObject.transform.localScale.y;
-        initialScaleZ = gameObject.transform.localScale.z;
-
-        // Get the click detection scripts
-        detectors = new GizmoClickDetection[4];
-        detectors[0] = xHandle.GetComponent<GizmoClickDetection>();
-        detectors[1] = yHandle.GetComponent<GizmoClickDetection>();
-        detectors[2] = zHandle.GetComponent<GizmoClickDetection>();
-        detectors[3] = centerHandle.GetComponent<GizmoClickDetection>();
-
-        // Set the same position for the target and the gizmo
-        transform.position = scaleTarget.transform.position;
-    }
-
-    public void Update()
-    {
-        // Store the previous local scale of the gizmo
-        if(Input.GetMouseButtonDown(0) && detectors[3].pressing)
+        public void Awake()
         {
-            previousGizmoScale = gameObject.transform.localScale;
-        }
-        else if (Input.GetMouseButtonUp(0) && previousGizmoScale != null)
-        {
-            gameObject.transform.localScale = ((Vector3) previousGizmoScale);
+            // Get the initial scales
+            initialScaleX = gameObject.transform.localScale.x;
+            initialScaleY = gameObject.transform.localScale.y;
+            initialScaleZ = gameObject.transform.localScale.z;
+
+            // Get the click detection scripts
+            detectors = new GizmoClickDetection[4];
+            detectors[0] = xHandle.GetComponent<GizmoClickDetection>();
+            detectors[1] = yHandle.GetComponent<GizmoClickDetection>();
+            detectors[2] = zHandle.GetComponent<GizmoClickDetection>();
+            detectors[3] = centerHandle.GetComponent<GizmoClickDetection>();
+
+            // Set the same position for the target and the gizmo
+            transform.position = scaleTarget.transform.position;
         }
 
-        for (int i = 0; i < 4; i++)
+        public void Update()
         {
-            if (Input.GetMouseButton(0) && detectors[i].pressing)
+            // Store the previous local scale of the gizmo
+            if(Input.GetMouseButtonDown(0) && detectors[3].pressing)
             {
-                switch (i)
+                previousGizmoScale = gameObject.transform.localScale;
+            }
+            else if (Input.GetMouseButtonUp(0) && previousGizmoScale != null)
+            {
+                gameObject.transform.localScale = ((Vector3) previousGizmoScale);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (Input.GetMouseButton(0) && detectors[i].pressing)
                 {
-                    // X Axis
-                    case 0:
+                    switch (i)
+                    {
+                        // X Axis
+                        case 0:
                         {
                             // Scale along the X axis
                             float delta = Input.GetAxis("Mouse X") * (Time.deltaTime);
@@ -89,17 +91,17 @@ public class GizmoScale : MonoBehaviour
                             xCube.transform.position += new Vector3(lengthAfter - lengthBefore, 0.0f, 0.0f);
 
                             xCylinder.transform.position = new Vector3(
-                                    lengthAfter / 2.0f,
-                                    xCylinder.transform.position.y,
-                                    xCylinder.transform.position.z
+                                lengthAfter / 2.0f,
+                                xCylinder.transform.position.y,
+                                xCylinder.transform.position.z
                             );
 
                             previousGizmoScale = null;
                         }
-                        break;
+                            break;
 
-                    // Y Axis
-                    case 1:
+                        // Y Axis
+                        case 1:
                         {
                             // Scale along the Y axis
                             float delta = Input.GetAxis("Mouse Y") * (Time.deltaTime);
@@ -118,17 +120,17 @@ public class GizmoScale : MonoBehaviour
                             yCube.transform.position += new Vector3(0.0f, lengthAfter - lengthBefore, 0.0f);
 
                             yCylinder.transform.position = new Vector3(
-                                    yCylinder.transform.position.x,
-                                    lengthAfter / 2.0f,
-                                    yCylinder.transform.position.z
+                                yCylinder.transform.position.x,
+                                lengthAfter / 2.0f,
+                                yCylinder.transform.position.z
                             );
 
                             previousGizmoScale = null;
                         }
-                        break;
+                            break;
 
-                    // Z Axis
-                    case 2:
+                        // Z Axis
+                        case 2:
                         {
                             // Scale along the Z axis
                             float delta = Input.GetAxis("Mouse X") * (Time.deltaTime);
@@ -147,17 +149,17 @@ public class GizmoScale : MonoBehaviour
                             zCube.transform.position += new Vector3(0.0f, 0.0f, lengthAfter - lengthBefore);
 
                             zCylinder.transform.position = new Vector3(
-                                    zCylinder.transform.position.x,
-                                    zCylinder.transform.position.y,
-                                    lengthAfter / 2.0f
+                                zCylinder.transform.position.x,
+                                zCylinder.transform.position.y,
+                                lengthAfter / 2.0f
                             );
 
                             previousGizmoScale = null;
                         }
-                         break;
+                            break;
 
-                    // Center (uniform scale)
-                    case 3:
+                        // Center (uniform scale)
+                        case 3:
                         {
                             float delta = (Input.GetAxis("Mouse X") + Input.GetAxis("Mouse Y")) * (Time.deltaTime);
                             delta *= scaleSpeed;
@@ -169,12 +171,13 @@ public class GizmoScale : MonoBehaviour
                             scaleTarget.transform.localScale += new Vector3(delta, delta, delta);
                             gameObject.transform.localScale += new Vector3(delta, delta, delta);
                         }
-                        break;
-                }
+                            break;
+                    }
 
-                break;
+                    break;
+                }
             }
         }
-    }
 
+    }
 }

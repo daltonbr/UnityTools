@@ -1,52 +1,54 @@
 ﻿using UnityEngine;
 
-/// Handle Translate Gizmo at Runtime
-public class GizmoTranslate : MonoBehaviour
+namespace RuntimeGizmos
 {
-    /// X axis of gizmo
-    public GameObject xAxisObject;
-
-    /// Y axis of gizmo
-    public GameObject yAxisObject;
-
-    /// Z axis of gizmo
-    public GameObject zAxisObject;
-
-    /// Target for translation
-    public GameObject translateTarget;
-
-    /// Array of detector scripts stored as [x, y, z]
-    private GizmoClickDetection[] detectors;
-
-    public void Awake()
+    /// Handle Translate Gizmo at Runtime
+    public class GizmoTranslate : MonoBehaviour
     {
-        // Get the click detection scripts
-        detectors = new GizmoClickDetection[3];
-        detectors[0] = xAxisObject.GetComponent<GizmoClickDetection>();
-        detectors[1] = yAxisObject.GetComponent<GizmoClickDetection>();
-        detectors[2] = zAxisObject.GetComponent<GizmoClickDetection>();
+        /// X axis of gizmo
+        public GameObject xAxisObject;
 
-        // Set the same position for the target and the gizmo
-        transform.position = translateTarget.transform.position;
-    }
+        /// Y axis of gizmo
+        public GameObject yAxisObject;
 
-    public void Update()
-    {
-        for (int i = 0; i < 3; i++)
+        /// Z axis of gizmo
+        public GameObject zAxisObject;
+
+        /// Target for translation
+        public GameObject translateTarget;
+
+        /// Array of detector scripts stored as [x, y, z]
+        private GizmoClickDetection[] detectors;
+
+        public void Awake()
         {
-            if (Input.GetMouseButton(0) && detectors[i].pressing)
+            // Get the click detection scripts
+            detectors = new GizmoClickDetection[3];
+            detectors[0] = xAxisObject.GetComponent<GizmoClickDetection>();
+            detectors[1] = yAxisObject.GetComponent<GizmoClickDetection>();
+            detectors[2] = zAxisObject.GetComponent<GizmoClickDetection>();
+
+            // Set the same position for the target and the gizmo
+            transform.position = translateTarget.transform.position;
+        }
+
+        public void Update()
+        {
+            for (int i = 0; i < 3; i++)
             {
-                // Get the distance from the camera to the target (used as a scaling factor in translate)
-                float distance = Vector3.Distance(Camera.main.transform.position, translateTarget.transform.position);
-                distance = distance * 2.0f;
-
-                // Will store translate values
-                Vector3 offset = Vector3.zero;
-
-                switch (i)
+                if (Input.GetMouseButton(0) && detectors[i].pressing)
                 {
-                    // X Axis
-                    case 0:
+                    // Get the distance from the camera to the target (used as a scaling factor in translate)
+                    float distance = Vector3.Distance(Camera.main.transform.position, translateTarget.transform.position);
+                    distance = distance * 2.0f;
+
+                    // Will store translate values
+                    Vector3 offset = Vector3.zero;
+
+                    switch (i)
+                    {
+                        // X Axis
+                        case 0:
                         {
                             // If the user is pressing the plane, move along Y and Z, else move along X
 
@@ -70,10 +72,10 @@ public class GizmoTranslate : MonoBehaviour
                                 translateTarget.transform.Translate(offset);
                             }
                         }
-                        break;
+                            break;
 
-                    // Y Axis
-                    case 1:
+                        // Y Axis
+                        case 1:
                         {
                             // If the user is pressing the plane, move along X and Z, else just move along X
 
@@ -97,10 +99,10 @@ public class GizmoTranslate : MonoBehaviour
                                 translateTarget.transform.Translate(offset);
                             }
                         }
-                        break;
+                            break;
 
-                    // Z Axis
-                    case 2:
+                        // Z Axis
+                        case 2:
                         {
                             // If the user is pressing the plane, move along X and Y, else just move along Z
 
@@ -124,15 +126,16 @@ public class GizmoTranslate : MonoBehaviour
                                 translateTarget.transform.Translate(offset);
                             }
                         }
-                        break;
+                            break;
+                    }
+
+                    // Move the gizmo to match the target position
+                    transform.position = translateTarget.transform.position;
+
+                    break;
                 }
-
-                // Move the gizmo to match the target position
-                transform.position = translateTarget.transform.position;
-
-                break;
             }
         }
-    }
 
+    }
 }
