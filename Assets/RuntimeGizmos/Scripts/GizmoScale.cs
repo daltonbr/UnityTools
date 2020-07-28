@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// Handle Scale Gizmo at Runtime
-public class GizmoScaleScript : MonoBehaviour
+public class GizmoScale : MonoBehaviour
 {
     /// Scale speed scalar
     public float scaleSpeed = 7.5f;

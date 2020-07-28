@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 /// Handle View Gizmo (i.e. rotates the camera to a
 /// predefined position around a specified pivot; front, back, left etc.)
-public class GizmoViewScript : MonoBehaviour
+public class GizmoView : MonoBehaviour
 {
     /// Container for all cameras to rotate around targetObject
     public GameObject cameraContainer;

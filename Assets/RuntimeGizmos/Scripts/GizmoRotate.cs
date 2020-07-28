@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// Handle Rotate Gizmo at Runtime
-public class GizmoRotateScript : MonoBehaviour
+public class GizmoRotate : MonoBehaviour
 {
     /// Rotation speed scalar
     public float rotationSpeed = 75.0f;

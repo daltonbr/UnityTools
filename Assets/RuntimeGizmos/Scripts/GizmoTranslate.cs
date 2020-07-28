@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// Handle Translate Gizmo at Runtime
-public class GizmoTranslateScript : MonoBehaviour
+public class GizmoTranslate : MonoBehaviour
 {
     /// X axis of gizmo
     public GameObject xAxisObject;
