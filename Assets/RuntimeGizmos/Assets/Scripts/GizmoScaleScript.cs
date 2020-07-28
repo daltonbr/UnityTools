@@ -1,75 +1,40 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-/// <summary>
-///     Simple script to handle the functionality of the Scale Gizmo (i.e. scale the gizmo
-///     and the target object along the axis the user is dragging towards)
-/// </summary>
-/// 
-/// <author>
-///     Michael Hillman - thisishillman.co.uk
-/// </author>
-/// 
-/// <version>
-///     1.0.0 - 01st January 2016
-/// </version>
-public class GizmoScaleScript : MonoBehaviour {
-
-    /// <summary>
-    ///     Scale speed scalar
-    /// </summary>
+/// Handle Scale Gizmo at Runtime
+public class GizmoScaleScript : MonoBehaviour
+{
+    /// Scale speed scalar
     public float scaleSpeed = 7.5f;
 
-    /// <summary>
-    ///     X handle of gizmo
-    /// </summary>
+    /// X handle of gizmo
     public GameObject xHandle;
 
-    /// <summary>
-    ///     Y handle of gizmo
-    /// </summary>
+    /// Y handle of gizmo
     public GameObject yHandle;
 
-    /// <summary>
-    ///     Z handle of gizmo
-    /// </summary>
+    /// Z handle of gizmo
     public GameObject zHandle;
 
-    /// <summary>
-    ///     Components of each scaling handle
-    /// </summary>
+    /// Components of each scaling handle
     public GameObject xCube, xCylinder, yCube, yCylinder, zCube, zCylinder;
 
-    /// <summary>
-    ///     Center handle of gizmo
-    /// </summary>
+    /// Center handle of gizmo
     public GameObject centerHandle;
 
-    /// <summary>
-    ///     Target for scaling
-    /// </summary>
+    /// Target for scaling
     public GameObject scaleTarget;
 
-    /// <summary>
-    ///     Array of detector scripts stored as [x, y, z, center]
-    /// </summary>
+    /// Array of detector scripts stored as [x, y, z, center]
     private GizmoClickDetection[] detectors;
 
-    /// <summary>
-    ///     Initial local scales of the scaleTarget
-    /// </summary>
+    /// Initial local scales of the scaleTarget
     private float initialScaleX, initialScaleY, initialScaleZ;
 
-    /// <summary>
-    ///     Previous local scale of gizmo before uniform scale
-    /// </summary>
+    /// Previous local scale of gizmo before uniform scale
     private Vector3? previousGizmoScale;
-
-    /// <summary>
-    ///     On wake up
-    /// </summary>
-    public void Awake() {
-
+    
+    public void Awake()
+    {
         // Get the initial scales
         initialScaleX = gameObject.transform.localScale.x;
         initialScaleY = gameObject.transform.localScale.y;
@@ -86,23 +51,24 @@ public class GizmoScaleScript : MonoBehaviour {
         transform.position = scaleTarget.transform.position;
     }
 
-    /// <summary>
-    ///     Once per frame
-    /// </summary>
-    public void Update() {
-
+    public void Update()
+    {
         // Store the previous local scale of the gizmo
-        if(Input.GetMouseButtonDown(0) && detectors[3].pressing) {
+        if(Input.GetMouseButtonDown(0) && detectors[3].pressing)
+        {
             previousGizmoScale = gameObject.transform.localScale;
-        } else if(Input.GetMouseButtonUp(0) && previousGizmoScale != null) {
+        }
+        else if (Input.GetMouseButtonUp(0) && previousGizmoScale != null)
+        {
             gameObject.transform.localScale = ((Vector3) previousGizmoScale);
         }
 
-        for (int i = 0; i < 4; i++) {
-            if (Input.GetMouseButton(0) && detectors[i].pressing) {
-
-                switch (i) {
-
+        for (int i = 0; i < 4; i++)
+        {
+            if (Input.GetMouseButton(0) && detectors[i].pressing)
+            {
+                switch (i)
+                {
                     // X Axis
                     case 0:
                         {
@@ -212,4 +178,3 @@ public class GizmoScaleScript : MonoBehaviour {
     }
 
 }
-// End of script.

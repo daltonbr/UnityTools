@@ -1,70 +1,39 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
-/// <summary>
-///     Simple script to handle the functionality of the View Gizmo (i.e. rotates the camera to a
-///     predefined position around a specified pivot; front, back, left etc.)
-/// </summary>
-/// 
-/// <author>
-///     Michael Hillman - thisishillman.co.uk
-/// </author>
-/// 
-/// <version>
-///     1.0.0 - 01st January 2016
-/// </version>
-public class GizmoViewScript : MonoBehaviour {
-
-    /// <summary>
-    ///     Container for all cameras to rotate around targetObject
-    /// </summary>
+/// Handle View Gizmo (i.e. rotates the camera to a
+/// predefined position around a specified pivot; front, back, left etc.)
+public class GizmoViewScript : MonoBehaviour
+{
+    /// Container for all cameras to rotate around targetObject
     public GameObject cameraContainer;
 
-    /// <summary>
-    ///     X handles of gizmo (left and right)
-    /// </summary>
+    /// X handles of gizmo (left and right)
     public GameObject xHandle1, xHandle2;
 
-    /// <summary>
-    ///     Y handles of gizmo (top and bottom)
-    /// </summary>
+    /// Y handles of gizmo (top and bottom)
     public GameObject yHandle1, yHandle2;
 
-    /// <summary>
-    ///     Z handles of gizmo (front and back)
-    /// </summary>
+    /// Z handles of gizmo (front and back)
     public GameObject zHandle1, zHandle2;
 
-    /// <summary>
-    ///     Center cube of gizmo (free rotate)
-    /// </summary>
+    /// Center cube of gizmo (free rotate)
     public GameObject centerCube;
 
-    /// <summary>
-    ///     Target object to rotate around (pivot)
-    /// </summary>
+    /// Target object to rotate around (pivot)
     public GameObject targetObject;
 
-    /// <summary>
-    ///     Axis labels (i.e. "X", "Y", or "Z")
-    /// </summary>
+    // Axis labels (i.e. "X", "Y", or "Z")
     public Text topLabel, sideLabel;
 
-    /// <summary>
-    ///     Array of detector scripts stored as [x1, x2, y1, y2, z1, z2, center]
-    /// </summary>
+    // Array of detector scripts stored as [x1, x2, y1, y2, z1, z2, center]
     private GizmoClickDetection[] detectors;
 
-    /// <summary>
-    ///     Time of last click (since startup, in seconds)
-    /// </summary>
+    /// Time of last click (since startup, in seconds)
     private float lastClick;
 
-    /// <summary>
-    ///     On wake up
-    /// </summary>
-    public void Awake() {
+    public void Awake()
+    {
         lastClick = Time.realtimeSinceStartup;
 
         // Get the click detection scripts
@@ -82,25 +51,22 @@ public class GizmoViewScript : MonoBehaviour {
         zHandle2.GetComponent<Renderer>().enabled = false;
     }
 
-    /// <summary>
-    ///     Once per frame
-    /// </summary>
-    public void Update() {
-        
+    public void Update() 
+    {
         // If the user isn't clicking the center cube (for free rotate), and they've clicked recently
         // (within half a second), bug out.
         if (!detectors[6].pressing && (Time.realtimeSinceStartup - lastClick) < 0.5f) return;
 
-        // Find the handle that the user has clicked then move the camera the correspionding positions
-        for (int i = 0; i < detectors.Length; i++) {
-
-            if (Input.GetMouseButton(0) && detectors[i].pressing) {
-
+        // Find the handle that the user has clicked then move the camera the corresponding positions
+        for (int i = 0; i < detectors.Length; i++)
+        {
+            if (Input.GetMouseButton(0) && detectors[i].pressing)
+            {
                 // Get the distance from the cameraContainer to the pivot (targetObject) so that we can
                 // maintain it after moving to another side of the pivot.
                 float distance = Vector3.Distance(targetObject.transform.position, cameraContainer.transform.position);
-                switch(i) {
-
+                switch(i)
+                {
                     // Left most x handle, move to left view
                     case 0:
 
@@ -275,4 +241,3 @@ public class GizmoViewScript : MonoBehaviour {
     }
 
 }
-// End of script.

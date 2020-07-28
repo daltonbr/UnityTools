@@ -1,55 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-/// <summary>
-///     Simple script to handle the functionality of the Rotate Gizmo (i.e. rotate the gizmo
-///     and the target object along the axis the user is dragging towards)
-/// </summary>
-/// 
-/// <author>
-///     Michael Hillman - thisishillman.co.uk
-/// </author>
-/// 
-/// <version>
-///     1.0.0 - 01st January 2016
-/// </version>
-public class GizmoRotateScript : MonoBehaviour {
-
-    /// <summary>
-    ///     Rotation speed scalar
-    /// </summary>
+/// Handle Rotate Gizmo at Runtime
+public class GizmoRotateScript : MonoBehaviour
+{
+    /// Rotation speed scalar
     public float rotationSpeed = 75.0f;
 
-    /// <summary>
-    ///     X torus of gizmo
-    /// </summary>
+    /// X torus of gizmo
     public GameObject xTorus;
 
-    /// <summary>
-    ///     Y torus of gizmo
-    /// </summary>
+    /// Y torus of gizmo
     public GameObject yTorus;
 
-    /// <summary>
-    ///     Z torus of gizmo
-    /// </summary>
+    /// Z torus of gizmo
     public GameObject zTorus;
 
-    /// <summary>
-    ///     Target for rotation
-    /// </summary>
+    /// Target for rotation
     public GameObject rotateTarget;
 
-    /// <summary>
-    ///     Array of detector scripts stored as [x, y, z]
-    /// </summary>
+    /// Array of detector scripts stored as [x, y, z]
     private GizmoClickDetection[] detectors;
 
-    /// <summary>
-    ///     On wake up
-    /// </summary>
-    public void Awake() {
-
+    public void Awake()
+    {
         // Get the click detection scripts
         detectors = new GizmoClickDetection[3];
         detectors[0] = xTorus.GetComponent<GizmoClickDetection>();
@@ -60,19 +33,18 @@ public class GizmoRotateScript : MonoBehaviour {
         transform.position = rotateTarget.transform.position;
     }
 
-    /// <summary>
-    ///     Once per frame
-    /// </summary>
-    public void Update() {
-        for (int i = 0; i < 3; i++) {
-
-            if (Input.GetMouseButton(0) && detectors[i].pressing) {
-
+    public void Update()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (Input.GetMouseButton(0) && detectors[i].pressing)
+            {
                 // Rotation angle
                 float delta = (Input.GetAxis("Mouse X") - Input.GetAxis("Mouse Y")) * (Time.deltaTime);
                 delta *= rotationSpeed;
 
-                switch (i) {
+                switch (i)
+                {
                     // X Axis
                     case 0:
                         rotateTarget.transform.Rotate(Vector3.right, delta);
@@ -98,4 +70,3 @@ public class GizmoRotateScript : MonoBehaviour {
     }
 
 }
-// End of script.
