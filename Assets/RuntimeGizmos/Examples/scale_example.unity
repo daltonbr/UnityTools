@@ -203,29 +203,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 118228, guid: 03cf525078a479e43b752196175042af, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 151638, guid: 03cf525078a479e43b752196175042af, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 170212, guid: 03cf525078a479e43b752196175042af, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 180582, guid: 03cf525078a479e43b752196175042af, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 181340, guid: 03cf525078a479e43b752196175042af, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 188004, guid: 03cf525078a479e43b752196175042af, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
+    - target: {fileID: 137462, guid: 03cf525078a479e43b752196175042af, type: 3}
+      propertyPath: m_Name
+      value: scale_gizmo
       objectReference: {fileID: 0}
     - target: {fileID: 461300, guid: 03cf525078a479e43b752196175042af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -259,6 +239,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 461300, guid: 03cf525078a479e43b752196175042af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461300, guid: 03cf525078a479e43b752196175042af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461300, guid: 03cf525078a479e43b752196175042af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11412966, guid: 03cf525078a479e43b752196175042af, type: 3}
       propertyPath: gizmoCamera
       value: 
@@ -275,6 +267,10 @@ PrefabInstance:
       propertyPath: scaleTarget
       value: 
       objectReference: {fileID: 2133342900}
+    - target: {fileID: 11478676, guid: 03cf525078a479e43b752196175042af, type: 3}
+      propertyPath: scaleSpeed
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 11487974, guid: 03cf525078a479e43b752196175042af, type: 3}
       propertyPath: gizmoCamera
       value: 
@@ -535,7 +531,7 @@ Transform:
   m_GameObject: {fileID: 2133342900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3089, y: 1.3089, z: 1.3089}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2

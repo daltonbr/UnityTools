@@ -29,18 +29,31 @@ namespace RuntimeGizmos
         /// Array of detector scripts stored as [x, y, z, center]
         private GizmoClickDetection[] _detectors;
 
-        /// Initial local scales of the scaleTarget
-        private float _initialScaleX, _initialScaleY, _initialScaleZ;
-
-        /// Previous local scale of gizmo before uniform scale
-        private Vector3? _previousGizmoScale;
-    
+        /// Initial scale and position of gizmos
+        private Vector3 _initialScaleCenterHandle;
+        private Vector3 _initialPositionXCube;
+        private Vector3 _initialPositionYCube;
+        private Vector3 _initialPositionZCube;
+        private Vector3 _initialPositionXCylinder;
+        private Vector3 _initialPositionYCylinder;
+        private Vector3 _initialPositionZCylinder;
+        private Vector3 _initialScaleXCylinder;
+        private Vector3 _initialScaleYCylinder;
+        private Vector3 _initialScaleZCylinder;
+        
         public void Awake()
         {
-            // Get the initial scales
-            _initialScaleX = gameObject.transform.localScale.x;
-            _initialScaleY = gameObject.transform.localScale.y;
-            _initialScaleZ = gameObject.transform.localScale.z;
+            // Get the initial state of gizmos
+            _initialScaleCenterHandle = gameObject.transform.localScale; 
+            _initialPositionXCube = xCube.transform.localPosition;
+            _initialPositionYCube = yCube.transform.localPosition;
+            _initialPositionZCube = zCube.transform.localPosition;
+            _initialPositionXCylinder = xCylinder.transform.localPosition;
+            _initialPositionYCylinder = yCylinder.transform.localPosition;
+            _initialPositionZCylinder = zCylinder.transform.localPosition;
+            _initialScaleXCylinder = xCylinder.transform.localScale;
+            _initialScaleYCylinder = yCylinder.transform.localScale;
+            _initialScaleZCylinder = zCylinder.transform.localScale;
 
             // Get the click detection scripts
             _detectors = new GizmoClickDetection[4];
@@ -55,14 +68,9 @@ namespace RuntimeGizmos
 
         public void Update()
         {
-            // Store the previous local scale of the gizmo
-            if(Input.GetMouseButtonDown(0) && _detectors[3].pressing)
+            if (Input.GetMouseButtonUp(0))
             {
-                _previousGizmoScale = gameObject.transform.localScale;
-            }
-            else if (Input.GetMouseButtonUp(0) && _previousGizmoScale != null)
-            {
-                gameObject.transform.localScale = ((Vector3) _previousGizmoScale);
+                RescaleGizmoBack();
             }
 
             for (int i = 0; i < 4; i++)
@@ -95,8 +103,6 @@ namespace RuntimeGizmos
                                 xCylinder.transform.position.y,
                                 xCylinder.transform.position.z
                             );
-
-                            _previousGizmoScale = null;
                         }
                             break;
 
@@ -124,8 +130,6 @@ namespace RuntimeGizmos
                                 lengthAfter / 2.0f,
                                 yCylinder.transform.position.z
                             );
-
-                            _previousGizmoScale = null;
                         }
                             break;
 
@@ -153,8 +157,6 @@ namespace RuntimeGizmos
                                 zCylinder.transform.position.y,
                                 lengthAfter / 2.0f
                             );
-
-                            _previousGizmoScale = null;
                         }
                             break;
 
@@ -164,9 +166,9 @@ namespace RuntimeGizmos
                             float delta = (Input.GetAxis("Mouse X") + Input.GetAxis("Mouse Y")) * (Time.deltaTime);
                             delta *= scaleSpeed;
 
-                            if ((gameObject.transform.localScale.x + delta) <= (_initialScaleX / 25.0f)) return;
-                            if ((gameObject.transform.localScale.y + delta) <= (_initialScaleY / 25.0f)) return;
-                            if ((gameObject.transform.localScale.z + delta) <= (_initialScaleZ / 25.0f)) return;
+                            if ((gameObject.transform.localScale.x + delta) <= (_initialScaleCenterHandle.x / 25.0f)) return;
+                            if ((gameObject.transform.localScale.y + delta) <= (_initialScaleCenterHandle.y / 25.0f)) return;
+                            if ((gameObject.transform.localScale.z + delta) <= (_initialScaleCenterHandle.z / 25.0f)) return;
 
                             scaleTarget.transform.localScale += new Vector3(delta, delta, delta);
                             gameObject.transform.localScale += new Vector3(delta, delta, delta);
@@ -177,6 +179,20 @@ namespace RuntimeGizmos
                     break;
                 }
             }
+        }
+
+        private void RescaleGizmoBack()
+        {
+            gameObject.transform.localScale = _initialScaleCenterHandle;
+            xCube.transform.localPosition = _initialPositionXCube;
+            yCube.transform.localPosition = _initialPositionYCube;
+            zCube.transform.localPosition = _initialPositionZCube;
+            xCylinder.transform.localPosition = _initialPositionXCylinder;
+            yCylinder.transform.localPosition = _initialPositionYCylinder;
+            zCylinder.transform.localPosition = _initialPositionZCylinder;
+            xCylinder.transform.localScale = _initialScaleXCylinder;
+            yCylinder.transform.localScale = _initialScaleYCylinder;
+            zCylinder.transform.localScale = _initialScaleZCylinder;
         }
 
     }
