@@ -42,4 +42,5 @@ sysinfo.txt
 /ProjectSettings/UnityAdsSettings.asset
 /ProjectSettings/UnityConnectSettings.asset
 
+# JetBrainz IDE
 .idea/
