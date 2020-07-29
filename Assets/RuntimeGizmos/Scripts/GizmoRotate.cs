@@ -23,6 +23,8 @@ namespace RuntimeGizmos
         /// Array of detector scripts stored as [x, y, z]
         private GizmoClickDetection[] _detectors;
 
+        private Quaternion _initialRotation;
+
         public void Awake()
         {
             // Get the click detection scripts
@@ -33,13 +35,22 @@ namespace RuntimeGizmos
 
             // Set the same position for the target and the gizmo
             transform.position = rotateTarget.transform.position;
+
+            _initialRotation = gameObject.transform.rotation;
         }
 
         public void Update()
         {
+            if (Input.GetMouseButtonUp(0))
+            {
+                gameObject.transform.rotation = _initialRotation;
+            }
+            
+            if (!Input.GetMouseButton(0)) return;
+            
             for (int i = 0; i < 3; i++)
             {
-                if (Input.GetMouseButton(0) && _detectors[i].pressing)
+                if (_detectors[i].pressing)
                 {
                     // Rotation angle
                     float delta = (Input.GetAxis("Mouse X") - Input.GetAxis("Mouse Y")) * (Time.deltaTime);
@@ -49,20 +60,20 @@ namespace RuntimeGizmos
                     {
                         // X Axis
                         case 0:
-                            rotateTarget.transform.Rotate(Vector3.right, delta);
+                            rotateTarget.transform.Rotate(Vector3.right, delta, Space.World);
                             gameObject.transform.Rotate(Vector3.right, delta);
                             break;
 
                         // Y Axis
                         case 1:
-                            rotateTarget.transform.Rotate(Vector3.down, delta);
+                            rotateTarget.transform.Rotate(Vector3.down, delta, Space.World);
                             gameObject.transform.Rotate(Vector3.down, delta);
                             break;
 
                         // Z Axis
                         case 2:
-                            rotateTarget.transform.Rotate(Vector3.forward, delta);
-                            gameObject.transform.Rotate(Vector3.forward, delta);
+                            rotateTarget.transform.Rotate(Vector3.back, delta, Space.World);
+                            gameObject.transform.Rotate(Vector3.back, delta);
                             break;
                     }
 
